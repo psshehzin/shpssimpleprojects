@@ -3,7 +3,7 @@ class Scoreboard(Turtle):
     def __init__(self):
         super().__init__()
         self.score=0
-        with open("hs.txt") as file:
+        with open("./highscore.txt") as file:
             self.highscore=int(file.read())
         self.hideturtle()
         self.penup()
@@ -23,7 +23,7 @@ class Scoreboard(Turtle):
         self.clear()
         if self.highscore<self.score:
             self.highscore=self.score
-            with open("hs.txt",mode="w") as file:
+            with open("./highscore.txt",mode="w") as file:
                 file.write(f"{self.highscore}")
             self.score=0
             self.pendown()
