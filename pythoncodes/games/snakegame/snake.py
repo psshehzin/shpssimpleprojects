@@ -31,6 +31,24 @@ class Snake:
         tim.speed("fast")
         self.snake.append(tim)
         self.snake_position.append(temp)
+    def reset(self):
+        for sn in self.snake:
+            sn.goto(x=1000,y=1000)
+        self.snake.clear()
+        self.snake=[]
+        STARTING_POSITIONS=[(0,0),(-20,0),(-40,0)]
+        self.snake_position=STARTING_POSITIONS
+        for i in range(3):
+            tim=Turtle()
+            tim.shape("square")
+            tim.color("white")
+            tim.speed("fastest")
+            tim.penup()
+            tim.goto(x=STARTING_POSITIONS[i][0],y=STARTING_POSITIONS[i][1])
+            self.snake.append(tim)
+        self.heading=self.snake[0]
+
+
 
     def up(self):
         if self.heading.heading()!=270:

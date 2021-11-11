@@ -31,6 +31,8 @@ sc.bgcolor("black")
 sc.title("The Snake")
 draw_border(WIDTH)
 score=Scoreboard()
+score.write(f"SCORE :  HighScore : {score.highscore} ", move=False, align="center", font=["Arial",20, 'normal'])
+sc.update()
 fd=Food()
 sc.listen()
 snakeob=snake.Snake()
@@ -47,21 +49,27 @@ while(True):
 # if (snakeob.heading.xcor() in range(fd.X-15,fd.X+16) and snakeob.heading.ycor() in range(fd.Y-15,fd.Y+16)):
     if snakeob.heading.distance((fd.X,fd.Y))<15:
         score.score_update()
+        sc.update()
         snakeob.add_snake(temp)
         fd.X,fd.Y=fd.new_food_poss(snakeob.snake_position)
         sc.update()
     if (snakeob.heading.xcor()>300 or snakeob.heading.xcor()<-300) or (snakeob.heading.ycor()>300 or snakeob.heading.ycor()<-300):
-        score.game_over()
+        score.reset()
+        score.write(f"SCORE : {score.score}  HighScore : {score.highscore}", move=False, align="center", font=["Arial",20, 'normal'])
+        snakeob.reset()
         sc.update()
-        break
+       
+        
     
     for i in snakeob.snake_position[1:]:
         flag=0
         if (snakeob.heading.distance(i)<8):
-            score.game_over()
+            score.reset()
             flag=1
+            score.write(f"SCORE : {score.score}  HighScore : {score.highscore}", move=False, align="center", font=["Arial",20, 'normal'])
+            snakeob.reset()
             sc.update()
-            break
+            
     if flag==1:
         break
     
