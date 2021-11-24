@@ -33,17 +33,17 @@ def start_timer():
     if REP in range(0,8,2):
         label2.config(text=text2)
         label.config(text=" Work Time",fg=GREEN)
-        count_down(5)
+        count_down(WORK_MIN*60)
     elif REP in range(1,8,2):
         text2=text2+TICK
         label2.config(text=text2)
         label.config(text="Break Time",fg=BLACK)
-        count_down(3)
+        count_down(SHORT_BREAK_MIN*60)
         
     else:
         label.config(text="Break Time",fg=BLACK)
         text2=""
-        count_down(2)
+        count_down(LONG_BREAK_MIN*60)
         
         
 
